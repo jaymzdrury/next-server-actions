@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { inter } from "@/font/font";
 
 export const metadata: Metadata = {
   title: "Server actions",
   description: "Server actions",
   icons: {
-    icon: '/img/favicon.ico'
-  }
+    icon: "/img/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -18,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
