@@ -1,11 +1,15 @@
-export async function fetchRequest(){
+export async function fetchRequest() {
+  try {
     const res = await fetch(`${process.env.URL}/api`, {
-      cache: 'no-cache',
+      cache: "no-cache",
       next: {
-        tags: ['data']
-      }
-    })
-    if(!res.ok) throw new Error()
-    const data: Data[] = await res.json()
-    return data
+        tags: ["data"],
+      },
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(`Error: ${res.status}, ${data.message}`);
+    return data;
+  } catch (error) {
+    throw new Error(`Error: ${(error as Error)?.message ?? "Unknown error"}`);
+  }
 }
