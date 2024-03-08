@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ClientInput from "../../components/client-input";
-import { fetchRequest } from "../../utils/fetch-request";
+import { getData } from "@/actions/actions";
 
 export const metadata = (): Metadata => {
   return {
@@ -9,7 +9,7 @@ export const metadata = (): Metadata => {
 };
 
 export default async function Page2(): Promise<JSX.Element> {
-  const data: Data[] = await fetchRequest();
+  const data: Data[] = await getData();
   return (
     <>
       <ul>

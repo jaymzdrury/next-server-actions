@@ -1,20 +1,25 @@
 "use server";
+import { get, post } from "@/lib/db";
+import { Schema } from "@/lib/schema";
 import { revalidateTag } from "next/cache";
 
-export async function post(e: FormData | string) {
-  const text = typeof e === "string" ? e : e.get("text");
-  if (!text) return;
+export async function getData() {
+  const { error, data } = await get();
 
-  try {
-    const res = await fetch(`${process.env.URL}/api`, {
-      method: "POST",
-      body: JSON.stringify(text),
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(`Error: ${res.status} ${data.message}`);
-  } catch (error) {
-    throw new Error(`Error: ${(error as Error)?.message ?? "Unknown error"}`);
-  }
+  if (error) throw new Error(error);
+
+  return data;
+}
+
+export async function postData(e: FormData | string) {
+  const text = typeof e === "string" ? e : e.get("text");
+  const { success } = Schema.safeParse({ text });
+
+  if (!success) return { error: "invalid" };
+
+  const { error } = await post(text!);
+
+  if (error) throw new Error(error);
 
   revalidateTag("data");
 }

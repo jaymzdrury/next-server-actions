@@ -1,8 +1,7 @@
 import { Metadata } from "next";
-import { post } from "../actions/actions";
-import { fetchRequest } from "../utils/fetch-request";
 import ClientComponent from "../components/client";
 import Input from "../components/input";
+import { getData, postData } from "@/actions/actions";
 
 export const metadata = (): Metadata => {
   return {
@@ -11,11 +10,11 @@ export const metadata = (): Metadata => {
 };
 
 export default async function Home(): Promise<JSX.Element> {
-  const data: Data[] = await fetchRequest();
+  const data: Data[] = await getData();
 
   return (
     <>
-      <form action={post}>
+      <form action={postData}>
         <Input />
       </form>
       {data.map((d) => (
