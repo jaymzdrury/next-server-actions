@@ -1,6 +1,6 @@
 "use server";
 import { get, post } from "@/lib/db";
-import { Schema } from "@/lib/schema";
+import { Schema } from "@/types";
 import { revalidateTag } from "next/cache";
 
 export async function getData() {

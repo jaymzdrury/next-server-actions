@@ -1,5 +1,7 @@
 import errMsg from "./errMsg";
-const url = `${process.env.URL}/api`;
+import { parsedEnv } from "@/types";
+
+const url = `${parsedEnv.URL}/api`;
 
 export async function get() {
   try {

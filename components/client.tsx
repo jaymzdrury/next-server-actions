@@ -3,6 +3,7 @@ import { useOptimistic, useRef } from "react";
 import { postData } from "../actions/actions";
 import { useFormStatus } from "react-dom";
 import Input from "./input";
+import { Data } from "@/types";
 
 export default function ClientData({ data }: { data: Data[] }): JSX.Element {
   const ref = useRef<HTMLFormElement>(null);

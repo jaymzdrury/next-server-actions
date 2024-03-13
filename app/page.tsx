@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import ClientComponent from "../components/client";
 import Input from "../components/input";
 import { getData, postData } from "@/actions/actions";
+import { Data } from "@/types";
 
 export const metadata = (): Metadata => {
   return {
