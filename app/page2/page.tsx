@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import ClientInput from "../../components/client-input";
 import { getData } from "@/actions/actions";
-import { Data } from "@/types";
 
 export const metadata = (): Metadata => {
   return {
@@ -10,12 +9,12 @@ export const metadata = (): Metadata => {
 };
 
 export default async function Page2(): Promise<JSX.Element> {
-  const data: Data[] = await getData();
+  const data = await getData();
   return (
     <>
       <ul>
         {data.map((d) => (
-          <li key={d.toString()}>{d}</li>
+          <li key={d}>{d}</li>
         ))}
       </ul>
       <ClientInput />

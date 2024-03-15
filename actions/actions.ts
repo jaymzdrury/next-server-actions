@@ -1,9 +1,9 @@
 "use server";
 import { get, post } from "@/lib/db";
-import { Schema } from "@/types";
+import { Schema, Data } from "@/types";
 import { revalidateTag } from "next/cache";
 
-export async function getData() {
+export async function getData(): Promise<Data> {
   const { error, data } = await get();
 
   if (error) throw new Error(error);

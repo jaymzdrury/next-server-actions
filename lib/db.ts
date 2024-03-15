@@ -1,7 +1,5 @@
 import errMsg from "./errMsg";
-import { parsedEnv } from "@/types";
-
-const url = `${parsedEnv.URL}/api`;
+import { url } from "./url";
 
 export async function get() {
   try {

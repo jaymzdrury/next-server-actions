@@ -5,7 +5,7 @@ import { useFormStatus } from "react-dom";
 import Input from "./input";
 import { Data } from "@/types";
 
-export default function ClientData({ data }: { data: Data[] }): JSX.Element {
+export default function ClientData({ data }: { data: Data }): JSX.Element {
   const ref = useRef<HTMLFormElement>(null);
   const [optimisticData, addOptimisitcData] = useOptimistic(
     data,
@@ -21,14 +21,14 @@ export default function ClientData({ data }: { data: Data[] }): JSX.Element {
         ref={ref}
         action={async (formData) => {
           ref.current?.reset();
-          addOptimisitcData(formData.get("text") as string);
+          addOptimisitcData(formData.get("text"));
           await postData(formData);
         }}
       >
         <Input disabled={pending} />
       </form>
       {optimisticData.map((d) => (
-        <p key={d.toString()}>{d}</p>
+        <p key={d}>{d}</p>
       ))}
     </>
   );

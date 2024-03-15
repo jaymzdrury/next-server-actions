@@ -1,11 +1,11 @@
 "use client";
-import { useRef, useTransition } from "react";
-import { postData } from "../actions/actions";
+import React from "react";
 import Input from "./input";
+import { postData } from "../actions/actions";
 
 export default function ClientInput(): JSX.Element {
-  const ref = useRef<HTMLInputElement>(null);
-  const [pending, startTransition] = useTransition();
+  const ref = React.useRef<HTMLInputElement>(null);
+  const [pending, startTransition] = React.useTransition();
 
   return (
     <>
