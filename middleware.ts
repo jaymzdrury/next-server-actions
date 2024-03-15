@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
+import { chain } from "./middlewares/chain";
+import { cookies } from "./middlewares/cookies";
+import { redirect } from "./middlewares/redirect";
 
-export function middleware(request: NextRequest) {
-  return NextResponse.redirect(new URL("/", request.url));
-}
+const middlewares = [cookies, redirect];
+export default chain(middlewares);
 
 export const config = {
   matcher: ["/profile", "/about"],
