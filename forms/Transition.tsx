@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import Input from "./input";
-import { postData } from "../actions/actions";
+import Input from "@/components/input";
+import { postData } from "@/actions/actions";
+import withTitle from "@/hoc/withTitle";
 
-export default function ClientInput(): JSX.Element {
+function Transition(): JSX.Element {
   const ref = React.useRef<HTMLInputElement>(null);
   const [pending, startTransition] = React.useTransition();
-
   return (
     <>
       <Input ref={ref} />
@@ -24,3 +24,5 @@ export default function ClientInput(): JSX.Element {
     </>
   );
 }
+
+export default withTitle(Transition, "useTransition");

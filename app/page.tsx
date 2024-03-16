@@ -1,7 +1,9 @@
 import { Metadata } from "next";
-import ClientComponent from "../components/client";
-import Input from "../components/input";
-import { getData, postData } from "@/actions/actions";
+import { getData } from "@/actions/actions";
+import Server from "@/forms/Server";
+import Transition from "@/forms/Transition";
+import Optimistic from "@/forms/Optimistic";
+import FormState from "@/forms/FormState";
 
 export const metadata = (): Metadata => {
   return {
@@ -14,13 +16,13 @@ export default async function Home(): Promise<JSX.Element> {
 
   return (
     <>
-      <form action={postData}>
-        <Input />
-      </form>
+      <Server />
+      <Transition />
       {data?.map((d) => (
         <p key={d}>{d}</p>
       ))}
-      <ClientComponent data={data} />
+      <Optimistic data={data} />
+      <FormState />
     </>
   );
 }

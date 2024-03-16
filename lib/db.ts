@@ -23,7 +23,7 @@ export async function post(text: FormDataEntryValue) {
       body: JSON.stringify(text),
     });
     const data = await res.json();
-    return { error: !res.ok ? data.message : null };
+    return { error: !res.ok ? data.message : null, data };
   } catch (error) {
     return { error: errMsg(error) };
   }

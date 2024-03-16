@@ -1,13 +1,14 @@
 "use client";
-import { useOptimistic, useRef } from "react";
-import { postData } from "../actions/actions";
+import React from "react";
 import { useFormStatus } from "react-dom";
-import Input from "./input";
+import { postData } from "@/actions/actions";
 import { Data } from "@/types";
+import Input from "@/components/input";
+import withTitle from "@/hoc/withTitle";
 
-export default function ClientData({ data }: { data: Data }): JSX.Element {
-  const ref = useRef<HTMLFormElement>(null);
-  const [optimisticData, addOptimisitcData] = useOptimistic(
+function Optimistic({ data }: { data: Data }) {
+  const ref = React.useRef<HTMLFormElement>(null);
+  const [optimisticData, addOptimisitcData] = React.useOptimistic(
     data,
     (state, newData: any) => {
       return [...state, newData];
@@ -33,3 +34,5 @@ export default function ClientData({ data }: { data: Data }): JSX.Element {
     </>
   );
 }
+
+export default withTitle(Optimistic, "useOptimistic");

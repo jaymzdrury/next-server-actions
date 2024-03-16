@@ -23,3 +23,16 @@ export async function postData(e: FormData | string) {
 
   revalidateTag("data");
 }
+
+export async function postFormData(state: any, e: FormData) {
+  const text = e.get("text");
+  const { success } = Schema.safeParse({ text });
+
+  if (!success) return { error: "invalid" };
+
+  const { error, data } = await post(text!);
+
+  if (error) throw new Error(error);
+
+  return { data };
+}
